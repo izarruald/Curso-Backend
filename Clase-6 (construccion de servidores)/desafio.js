@@ -7,7 +7,7 @@ let i = 0
 class Contenedor{
         // los objetos de cliente se construyen con los siguientes datos
         constructor() {
-            this.ruta = "productos.json"
+            this.ruta = "productos.txt"
             this.cosas = []
 
         }
@@ -45,12 +45,12 @@ class Contenedor{
                 
 
                 //ELIMINAR EL OBJETO BUSCADO POR ID
-                await caja.deleteById(3)
-                console.log(array)
+                // await caja.deleteById(3)
+                // console.log(array)
 
                 //ELIMINAR TODOS LOS OBJETOS DEL ARCHIVO
-                await caja.deleteAll(array)
-                console.log(array)
+                // await caja.deleteAll(array)
+                // console.log(array)
                 
 
             } catch (error){
@@ -59,76 +59,6 @@ class Contenedor{
                 console.log('termine')
             }
         }
-        
-        getById(id){
-            if(id == 1){
-                console.log(caja.cosas[0])
-            }else if (id== 2){
-                console.log(caja.cosas[1])
-            }else if(id== 3){
-                console.log(caja.cosas[2])
-            }else{
-                console.log("no se encontro el producto")
-            }
-        }
-        getAll(objeto){
-            console.log(objeto)
-        }
-
-
-
-        async deleteById(id){
-            try {
-                //pasa por todos los objetos del array
-                for(let i = 0; i < array.length; i++){
-                    //y si encuentre el id igual al pasado por param aplique la funcion
-                    
-                    if(id == array[i].id){
-                        array.splice(id - 1, 1)
-                        
-                    }
-        
-                }
-                await fs.promises.writeFile(this.ruta, JSON.stringify(array, null))
-                console.log("SALE DE ELIMINAR POR ID" + await fs.promises.readFile('productos.txt', 'utf-8'))
-                //const datos = await fs.promises.readFile('productos.txt', 'utf-8')  
-                //console.log(datos)
-                
-            } 
-            catch (error) {
-                return 'Error! ID no existe o ya fue eliminado'
-            }
-            finally{
-                console.log("TERMINE DE BORRAR POR ID")
-            } 
-        }
-
-        async deleteAll(array){
-            try {
-                //pasa por todos los objetos del array
-                for(let i = 0; i < array.length; i++){
-                    //y si encuentre el id igual al pasado por param aplique la funcion
-                    
-                    if(array == array){
-                        array.splice( 0, array.length + 1)
-                        
-                    }
-        
-                }
-                await fs.promises.writeFile(this.ruta, JSON.stringify(array, null))
-                console.log(await fs.promises.readFile('productos.txt', 'utf-8'))
-                //const datos = await fs.promises.readFile('productos.txt', 'utf-8')  
-                //console.log(datos)
-                
-            } 
-            catch (error) {
-                return 'Error! ID no existe o ya fue eliminado'
-            }
-            finally{
-                console.log("TERMINE DE BORRAR EL ARRAY")
-            } 
-        }
-
 }
 
 //caja significa un NUEVO CONTENEDOR
@@ -171,9 +101,69 @@ caja.sumarCosas(producto3)
 caja.guardar(array)
 
 
-//RECIBIR ARRAY POR ID
-caja.getById(2)
+//IMPORTAMOS LA LIBRERIA
+const express = require('express')
+
+//INVOCAMOS LA FUNCION Y NOS CREA UNA APPLICACION
+const app = express()
+
+let contadorVisitas = 1
+
+//INDICAMOS LA URL Y LE ENVIAMOS EL MENSAJE/CONTENIDO DE ESA DIRECCION
+app.get('/', (req, res) => {
+    res.send( `
+    <h1>Desafio Express</h1>
+    <p>Esto es un txt</p>
+    <a href="/visitas"</a>
+    ` )
+})
+
+//PARA ENVIAR UN ARCHIVO (ej: index.html)
+app.get('/pagina', (req, res) => {
+    //"enviame el archivo que esta en este directorio(cwd) + /index.html "
+    res.sendFile(process.cwd() + '/index.html')
+})
+
+//MUESTRA CANTIDAD DE VECES QUE SE VISITO EL SITIO
+app.get('/visitas', (req, res) => {
+    //si contador esta en 1 pone "vez" , sino "veces"
+    const palabraFinal = contadorVisitas == 1 ? 'vez' : 'veces'
+
+    //le paso contador inicializado en 1 y a medida que se va recargando aumenta el valor en 1 con el ++
+    res.send( `sitio visitado  ${contadorVisitas++} ${palabraFinal}` )
+})
+
+app.get('/fyh', (req, res) => {
+    const fecha = new Date()
+    const fechaStr = fecha.toLocaleString() 
+    res.send({
+        //ENVIAMOS UN OBJETO CON CLAVE "fyh" y VALOR "fechaStr"
+        fyh:fechaStr
+    })
+})
 
 
-//DEVUELVE UN ARRAY CON LOS OBJETOS PRESENTES EN EL ARCHIVO
-caja.getAll(array)  
+//DESAFIO!!!!
+
+//tira un array de numeros aleatoreos
+function elementoAleatorio(datos){
+    const aleatorio = datos[Math.floor(Math.random() * array.length)];
+    return aleatorio
+}  
+
+app.get('/productos', (req, res) => {
+    res.send (array)
+})
+
+app.get('/productosRandom', (req, res) => {
+    res.send (elementoAleatorio(array))
+})
+
+//CONFIGURAR (escuchar servidor en el puerto 8080)
+const PORT = 8080
+const server = app.listen(PORT, () => {
+    console.log(`Servidor http escuchando en el puerto ${server.address().port}`)
+})
+
+//CAPTURA ALGUN ERROR EN EL SERVIDOR
+server.on("error", error => console.log(`Error en servidor ${error}`))
