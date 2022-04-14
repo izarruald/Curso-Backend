@@ -1,0 +1,1 @@
+[{"titulo":"Escuadra","precio":200,"thumbnail":"https://cdn3.iconfinder.com","id":1},{"titulo":"Lapiz","precio":50,"thumbnail":"https://cdn3.iconfinder.com","id":2},{"titulo":"Calculadora","precio":300,"thumbnail":"https://cdn3.iconfinder.com","id":3}]
