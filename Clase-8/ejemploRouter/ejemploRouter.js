@@ -1,4 +1,4 @@
-//obtengo el objeto que exporte desde ambas rutas
+//obtengo el objeto que exporte desde el archivo de autos/bicis
 const routerAutos = require('./routers/routerAutos')
 const routerBicicletas = require('./routers/routerBicicletas.js')
 
@@ -11,8 +11,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //Router es una funcion
-//creo una mini app de autos
-
+//creo una mini app de autos y bicis
 app.use('/api/autos', routerAutos)
 app.use('/api/bicicletas', routerBicicletas)
 

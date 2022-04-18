@@ -1,7 +1,7 @@
+const { Console } = require('console')
 const express = require('express')
 
 const app = express()
-const productos = []
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -156,7 +156,7 @@ router.get('/:id', (req, res, next) => {
     const arrayObjeto = array;
     const id = req.params.id
     const filter = arrayObjeto.filter(function(array){
-        //devuelve el array que tiene mismo id que 'id'
+        //filtra el array que tiene mismo id que 'id'
         return array.id == id;
     })
     if (id > array.length){
@@ -172,6 +172,30 @@ router.post('/', (req, res, next) => {
     //recibo un require en el body y lo guardo en bicicletas
     caja.sumarCosas(req.body)
     res.json(req.body)
+})
+
+//PUT
+router.put('/:id', ({ body, params }, res) => {
+    // const { body, params } = req
+    console.log(params, body)
+    console.log(array[params.id - 1])
+    let arrayAct = array[params.id - 1] = body
+    res.json(array)
+    console.log(array)
+})
+
+//DELETE
+router.delete('/:id', ({ params }, res) => {
+    // const { params } = req
+    console.log(params.id)
+    const arrayObjeto = array;
+    const id = params.id
+    const filter = arrayObjeto.filter(function(array){
+        //filtra el array que tiene mismo id que 'id'
+        return array.id != id;
+    })
+    res.json(filter)
+    console.log(array)
 })
 
 

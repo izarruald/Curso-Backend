@@ -1,10 +1,10 @@
+//sacamos de la librerira express Router
 const { Router } = require('express')
 
 //creo const vacia de bicicletas
 const bicicletas = []
 
-
-//
+//creo un nuevo Router (funcion que me devuelve un objeto de tipo Router)
 const routerBicicletas = new Router()
 
 
@@ -25,5 +25,6 @@ routerBicicletas.post('/', (req, res) => {
 })
 
 //EXPORTO CON "module" QUE SIGNIFICA EL ARCHIVO QUE ESTOY MIRANDO
-//CON LA PROP EXPORT (objeto donde puedo guardar cosas y lo que ponga ahi dentro lo podre usar en otro lado)
+//CON EL "." ACCEDO A UNA DE LAS PROP DEL MODULO EN ESTE CASO EXPORT 
+//(objeto donde puedo guardar cosas y lo que ponga dentro de exports lo podre usar en otro lado importandolo )
 module.exports = routerBicicletas

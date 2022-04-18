@@ -8,7 +8,11 @@ app.use(express.json())
 
 app.use(express.urlencoded({ extended: true }))
 
+/* le pasamos la propiedad static y como argumento 'public' el nombre de una carpeta/directorio
+que va a estar en la misma carpeta en la que se desarrolla mi proyecto (index.html)*/ 
 app.use(express.static('public'))
+//se va a poder acceder a la carpeta public desde la ruta raiz del servidor ("localhost:8080/") 
+
 
 /* ------------------------------------------------------ */
 /* Cargo los routers */
