@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Subir Archivos</title>
+</head>
+
+<body>
+    <!--  SINGLE FILE -->
+    <!-- ACCION = GUARDAR EN "/uploadfile" -->
+    <form action="/uploadfile" enctype="multipart/form-data" method="POST">
+        <!-- RECIBO EL ARCHIVO POR EL NOMBRE "myFile" -->
+        <input type="file" name="myFile" />
+        <input type="submit" value="Subir Archivo" />
+    </form>
+
+    <!--  MULTIPLE FILE -->
+    <!-- ACCION = GUARDAR EN "/uploadfiles" --> 
+    <form action="/uploadfiles" enctype="multipart/form-data" method="POST">
+        <!-- RECIBO EL ARCHIVO POR EL NOMBRE "myFiles" Y ACLARO QUE SERA UN CAMPO MULTIPLE-->
+        <input type="file" name="myFiles" multiple />
+        <input type="submit" value="Subir Archivos" />
+    </form>
+</body>
+
+</html>

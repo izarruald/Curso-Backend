@@ -35,6 +35,9 @@ const router = express.Router()
 
 
 //uso los middlewares
+//MIDDLEWARE (entremedio) proceso entre la peticion y la respuesta
+//LA FUNCION CALLBACK OBTIENE EL NOMBRE DE CONTROLADOR, RECIBE DOS PARAMETROS (peticion y respuesta) 
+//la primera sirve para obtener info sobre lo enviado por el cliente y la segunda sirve para enviar una respuesta
 router.use((req, res, next) => {
     console.log('llegó una peticion')
     next()
