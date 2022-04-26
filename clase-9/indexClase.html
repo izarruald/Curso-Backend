@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <span id="saludo"></span> <!-- para inyectar el resultado -->
+    <span id="despedida"></span> <!-- para inyectar el resultado -->
+
+  <!-- incluir handlebars desde el CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+
+  <script>
+
+    const contexto = { 
+        nombre : 'Ivan' 
+    }
+
+
+    //a la respuesta del fetch le saco el texto
+    fetch('plantillas/saludo.plantilla').then(resp.text()).then(text => {
+        const templateSaludo= text //el saludo va a ser el texto que me trajo el fetch
+        const generarSaludo = Handlebars.compile(templateSaludo); // compila la plantilla (devuelve una funcion)
+        const htmlSaludo = generarSaludo(contexto); // genera el html (este es el CONTEXTO)
+        document.getElementById('saludo').innerHTML = htmlSaludo; // inyecta el resultado en la vista
+    })
+
+    fetch('plantillas/despedida.plantilla').then(resp.text()).then(text => {
+        const templateDespedida= text //el saludo va a ser el texto que me trajo el fetch
+        //ACA SE ARMA LA PLANTILLA (la funcion que devuelve es la plantilla)
+        //en el CONTEXTO de la app existe la variable Handlebars la cual recibe el metodo "compile" que lo que hace es 
+        //recibir la plantilla
+        const generarDespedida = Handlebars.compile(templateDespedida); // compila la plantilla (devuelve una funcion)
+
+
+        //cuando yo pase la funcion 
+        const htmlDespedida = generarDespedida(contexto); // genera el html (este es el CONTEXTO)
+
+
+        //con querySelector buscamos algun elemento de tipo span y modificamos el html con innerHTML por el contenido 
+        //que cree yo arriba
+        //document.querySelector('span').innerHTML = html; // inyecta el resultado en la vista
+        document.getElementById('despedida').innerHTML = htmlDespedida; // inyecta el resultado en la vista
+    })
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>

@@ -51,12 +51,12 @@ module.exports = class Contenedor{
             
 
             //ELIMINAR EL OBJETO BUSCADO POR ID
-            // await caja.deleteById(3)
-            // console.log(array)
+            await caja.deleteById(3)
+            console.log(array)
 
             //ELIMINAR TODOS LOS OBJETOS DEL ARCHIVO
-            // await caja.deleteAll(array)
-            // console.log(array)
+            await caja.deleteAll(array)
+            console.log(array)
             
 
         } catch (error){

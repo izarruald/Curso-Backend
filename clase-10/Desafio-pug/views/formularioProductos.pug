@@ -1,0 +1,14 @@
+extends layout
+
+block contenedor
+  h1.text-center Carga de Productos
+  form(action='/vistaProductos' method='post')
+    label Nombre
+    input.form-control(type='text' name='nombre' placeholder='Nombre del producto' required='')
+    label Precio
+    input.form-control(type='number' name='precio' placeholder='Precio del producto' required='')
+    label Foto
+    input.form-control(type='text' name='imagen' placeholder='URL de foto del producto')
+    button(type='submit').btn.btn-success.mt-3.mb-5 Enviar
+  br
+  a.ml-5(href='vistaProductos') ir a lista de productos

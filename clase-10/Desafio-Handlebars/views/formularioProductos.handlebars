@@ -1,0 +1,40 @@
+<div class='jumbotron'>
+  <h1 class='text-center'>Carga de Productos</h1>
+  <form action='/productos' method='post'>
+    <div class='form-group'>
+      <label for='nombreProd'><b>Nombre</b></label>
+      <input
+        id='nombreProd'
+        class='form-control'
+        type='text'
+        name='nombre'
+        placeholder='Nombre del producto'
+      />
+    </div>
+
+    <div class='form-group'>
+      <label for='precioProd'><b>Precio</b></label>
+      <input
+        id='precioProd'
+        class='form-control'
+        type='number'
+        name='precio'
+        placeholder='Precio del producto'
+      />
+    </div>
+
+    <div class='form-group'>
+      <label for='fotoProd'><b>Foto</b></label>
+      <input
+        id='fotoProd'
+        class='form-control'
+        type='text'
+        name='imagen'
+        placeholder='URL de foto del producto'
+      />
+    </div>
+
+    <button class='btn btn-success mt-3 mb-5'>Enviar</button>
+  </form>
+</div>
+<a class='ml-5' href='vistaProductos'>ir a lista de productos</a>

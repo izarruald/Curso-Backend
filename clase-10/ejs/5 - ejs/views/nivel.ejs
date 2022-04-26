@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+        <title>Mi plantilla de medidor en EJS</title>
+</head>
+
+<body>
+    <h1 style="color:blue;">
+        <!-- titulo tiene un - xq esta renderizado -->
+        <%-titulo%>
+    </h1>
+    <!-- el min y max tienen un = xq es textual -->
+    <span><%=min+" "%></span>
+
+    <% const estilo = " width:50%;height:40px"; %>
+
+    <meter value=<%=nivel%> min=<%=min%> max=<%=max%> style="<%=estilo%>"></meter>
+
+    <span><%=" "+max%></span>
+</body>
+
+</html>

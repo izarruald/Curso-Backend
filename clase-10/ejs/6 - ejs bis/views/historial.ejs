@@ -1,0 +1,32 @@
+<h2 style="color:crimson;">Historial</h2>
+
+<!-- RECIBO UN ARRAY DE PERSONAS -->
+<!-- SI PERSONAS ES MAYOR A 0 LO GUARDO EN LA CONST COMO UN BOLEANO -->
+<% const hayPersonas=personas.length> 0; %>
+
+    <!-- SI HAY PERSONAS MUESTRO TODA LA TABLA -->
+    <% if(hayPersonas){ %>
+        <table>
+            <tr style="color: blueviolet;">
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+            </tr>
+            <!-- POR CADA PERSONA EN PERSONAS HAGO UN TR PARA CADA UNA -->
+            <% for (const persona of personas) {%>
+                <tr>
+                    <td>
+                        <%=persona.nombre%>
+                    </td>
+                    <td>
+                        <%=persona.apellido%>
+                    </td>
+                    <td>
+                        <%=persona.edad%>
+                    </td>
+                </tr>
+                <%};%>
+        </table>
+        <% } else { %>
+            <h3>no se encontraron datos</h3>
+        <% } %>

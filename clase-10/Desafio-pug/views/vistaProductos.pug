@@ -1,0 +1,20 @@
+extends layout
+
+block contenedor
+  .table-responsive
+    h1.text-center Lista de Productos
+    br
+    if hayProductos
+      table.table.table-dark
+        tr(style='color: yellow')
+          th Nombre
+          th Precio
+          th Foto
+        each producto in allProductos
+          tr
+            th.ps-4.align-middle(scope='row')= producto.nombre
+            td.text-center.align-middle= producto.precio
+            td
+              .image-container.text-center
+                img.img-thumbnail(src=producto.imagen alt='Product image')
+    a(href='/') ir a carga de productos
